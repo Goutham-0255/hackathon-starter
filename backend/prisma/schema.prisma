@@ -1,0 +1,21 @@
+// Prisma schema: the single source of truth for the database structure.
+// After editing a model run `npm run db:migrate -- --name <change>`.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Scaffold-only model used by the hello-world endpoint to prove the DB works.
+// Replace or delete it once the real models exist.
+model Visit {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
